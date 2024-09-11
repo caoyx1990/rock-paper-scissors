@@ -171,7 +171,6 @@
     </footer>
   </div>
 </template>
-
 <script>
 export default {
   head() {
@@ -194,6 +193,11 @@ export default {
       script: [
         { src: '//unpkg.com/brain.js' },
         { hid: 'jsonld', type: 'application/ld+json', json: this.structuredData }
+        { 
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7341901814327769',
+          async: true,
+          crossorigin: 'anonymous'
+        }
       ]
     }
   },
@@ -335,5 +339,18 @@ export default {
 <style scoped>
 .emoji {
   font-size: 1.5em;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

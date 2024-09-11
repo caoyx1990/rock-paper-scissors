@@ -56,7 +56,7 @@ export default {
     port: 8000,
   },
   i18n: {
-    locales: ['en', 'zh'],
+    locales: ['en'],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -82,6 +82,7 @@ export default {
           reset: 'Reset',
           gameCount: 'Game count',
 
+          tips: 'Tips',
           what: 'What is this?',
           thisIs:
             'This is a paper scissors rock game created using artificial intelligence.',

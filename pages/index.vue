@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-5xl mx-auto lg:flex lg:justify-evenly lg:items-start">
+  <div class="max-w-5xl mx-auto flex-col">
     <div class="flex flex-col items-center justify-center text-center lg:mt-10">
       <!-- <div class="flex justify-end w-full p-4">
         <nuxt-link
@@ -55,13 +55,25 @@
         <div class="flex items-center mt-4 items-row justify-evenly">
           <div class="w-1/2 border-r border-indigo-500">
             <p class="text-3xl text-indigo-500">{{ scoreHuman }}</p>
-            <p class="mt-4 text-xl">{{ $t('human') }}</p>
-            <p class="mt-4">{{ showChosenByHuman }}</p>
+            <p class="mt-4 text-xl flex items-center justify-center">
+              <span class="emoji mr-2" aria-hidden="true">🥵</span>
+              <span>{{ $t('human') }}</span>
+            </p>
+            <p class="mt-4 flex items-center justify-center">
+              <span class="emoji mr-2" v-html="chosenEmoji(chosenByHuman)"></span>
+              <span>{{ showChosenByHuman }}</span>
+            </p>
           </div>
           <div class="w-1/2">
             <p class="text-3xl text-indigo-500">{{ scoreAI }}</p>
-            <p class="mt-4 text-xl">{{ $t('ai') }}</p>
-            <p class="mt-4">{{ showChosenByAI }}</p>
+            <p class="mt-4 text-xl flex items-center justify-center">
+              <span class="emoji mr-2" aria-hidden="true">🤖</span>
+              <span>{{ $t('ai') }}</span>
+            </p>
+            <p class="mt-4 flex items-center justify-center">
+              <span class="emoji mr-2" v-html="chosenEmoji(chosenByAI)"></span>
+              <span>{{ showChosenByAI }}</span>
+            </p>
           </div>
         </div>
         <div class="my-6 text-2xl font-bold">
@@ -116,48 +128,47 @@
         </div>
       </div>
     </div>
-    <div class="lg:ml-16">
-      <div class="p-4 mt-4 prose lg:prose-xl">
-        <h2>
-          {{ $t('what') }}
-        </h2>
-        <div>
-          <p>
-            {{ $t('thisIs') }}
-          </p>
-          <p>
-            {{ $t('thisGame') }}
-          </p>
-          <p>{{ $t('builtWith') }}</p>
+    <div class="mt-8 border-t border-indigo-200 pt-4">
+      <button @click="toggleRules" class="flex items-center justify-between w-full px-4 py-2 bg-indigo-100 rounded-t-lg focus:outline-none">
+        <span class="text-lg font-semibold text-indigo-600">{{ $t('tips') }}</span>
+        <svg :class="{'transform rotate-180': showTips}" class="w-5 h-5 text-indigo-600 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div v-show="showTips" class="bg-indigo-50 p-4 rounded-b-lg">
+        <div class="prose lg:prose-xl">
+          <h2>{{ $t('what') }}</h2>
+          <div>
+            <p>{{ $t('thisIs') }}</p>
+            <p>{{ $t('thisGame') }}</p>
+            <p>{{ $t('builtWith') }}</p>
+          </div>
         </div>
-      </div>
 
-      <div class="p-4 mt-4 prose lg:prose-xl">
-        <h2>
-          {{ $t('how') }}
-        </h2>
-        <div>
-          <ol>
-            <li>
-              {{ $t('step1') }}
-            </li>
-            <li>
-              {{ $t('step2') }}
-            </li>
-            <li>
-              {{ $t('step3') }}
-              <ul>
-                <li>{{ $t('pattern1') }}</li>
-                <li>{{ $t('pattern2') }}</li>
-                <li>{{ $t('pattern3') }}</li>
-                <li>{{ $t('pattern4') }}</li>
-              </ul>
-            </li>
-            <li>{{ $t('step4') }}</li>
-          </ol>
+        <div class="mt-4 prose lg:prose-xl">
+          <h2>{{ $t('how') }}</h2>
+          <div>
+            <ol>
+              <li>{{ $t('step1') }}</li>
+              <li>{{ $t('step2') }}</li>
+              <li>
+                {{ $t('step3') }}
+                <ul>
+                  <li>{{ $t('pattern1') }}</li>
+                  <li>{{ $t('pattern2') }}</li>
+                  <li>{{ $t('pattern3') }}</li>
+                  <li>{{ $t('pattern4') }}</li>
+                </ul>
+              </li>
+              <li>{{ $t('step4') }}</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
+    <footer class="mt-auto py-4 text-center text-gray-600 text-sm">
+      <p>Copyright © {{ new Date().getFullYear() }} Rock Paper Scissors Game</p>
+    </footer>
   </div>
 </template>
 
@@ -167,8 +178,18 @@ export default {
     return {
       title: this.$t('title'),
       meta: [
-        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
-        { hid: 'keywords', name: 'keywords', content: this.$t('metaKeywords') }
+      { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'keywords', name: 'keywords', content: this.$t('metaKeywords') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('title') },
+        { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: process.env.BASE_URL },
+        { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+        { hid: 'twitter:title', name: 'twitter:title', content: this.$t('title') },
+        { hid: 'twitter:description', name: 'twitter:description', content: this.$t('metaDescription') }
+      ],
+      link: [
+        { rel: 'canonical', href: process.env.BASE_URL  || 'https://rockpaperscissors-game.org' }
       ],
       script: [
         { src: '//unpkg.com/brain.js' },
@@ -178,6 +199,7 @@ export default {
   },
   data() {
     return {
+      showTips: false,
       pattern: [],
       scoreHuman: 0,
       scoreAI: 0,
@@ -197,6 +219,21 @@ export default {
     }
   },
   methods: {
+    toggleRules() {
+      this.showTips = !this.showTips;
+    },
+    chosenEmoji(chosen) {
+      switch (chosen) {
+        case 1:
+          return '✊';
+        case 2:
+          return '✋';
+        case 3:
+          return '✌️';
+        default:
+          return '';
+      }
+    },
     async humanInput(rockOrPaperOrScissors) {
       this.chosenByHuman = rockOrPaperOrScissors
       this.gameCount++
@@ -295,3 +332,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.emoji {
+  font-size: 1.5em;
+}
+</style>

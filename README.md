@@ -1,31 +1,33 @@
-# Rock Paper Scissors Game with Artificial Intelligence
+# Rock Paper Scissors Game with AI
 
 > Demo
 
-http://rockpaperscissors-ai.now.sh/
+http://rockpaperscissors-game.org
 
 ## What is this?
 
-This is a paper scissors rock game created using artificial intelligence.  
+Welcome to AI Rock Paper Scissors - a classic game with a twist!
 
-This game can read the players' patterns to determine the steps the AI will take in order to win.  
+Our smart AI learns from your moves, adapting its strategy to challenge you in exciting ways. Can you outsmart it?
 
-Built with Nuxt JS & Tailwind CSS framework.  
+Using Nuxt.js & Tailwind CSS for a smooth, responsive experience.
 
 ## Screensot
 
-![image](https://user-images.githubusercontent.com/32485694/90313106-085fa200-df34-11ea-956c-b22986cc01e1.png)
+![1726065566724](image/README/1726065566724.png)
 
 ## How to play?
 
-1. You can start the game by selecting "rock", "scissors" or "paper".
-2. Choose continuously until you create a pattern.
-3. Examples of patterns:
-    - Rock, rock, rock, rock, etc.
-    - Rock, scissors, rock, scissors, etc.
-    - Rock, scissors, paper, rock, scissors, paper, etc.
-    - Paper, paper, paper, paper, etc.
-4. See that you will lose.
+1. Start by choosing Rock ✊, Paper ✋, or Scissors ✌️.
+2. Keep playing and see if you can spot patterns in the AI's choices.
+3. Try different strategies! Here are some ideas:
+
+   * Go for the same choice multiple times
+   * Alternate between two choices
+   * Use a three-move sequence
+   * Mix it up randomly
+   * 
+4. Watch how the AI adapts to your style. Can you stay one step ahead?
 
 ## Build setup
 

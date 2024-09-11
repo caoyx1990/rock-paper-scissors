@@ -1,22 +1,6 @@
 export default {
   ssr : true,
   /*
-   ** Headers of the page
-   */
-  head: {
-    title: process.env.npm_package_name || '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/rock-paper-scissors.png' }]
-  },
-  /*
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },
@@ -83,22 +67,21 @@ export default {
           gameCount: 'Game count',
 
           tips: 'Tips',
-          what: 'What is this?',
-          thisIs:
-            'This is a paper scissors rock game created using artificial intelligence.',
-          thisGame:
-            "This game can read the players' patterns to determine the next steps for 'AI' will take in order to win.",
-          builtWith: 'Built with Nuxt JS & Tailwind CSS framework.',
+          what: 'What\'s This Game?',
+          thisIs: 'Welcome to AI Rock Paper Scissors - a classic game with a twist!',
+          thisGame: "Our smart AI learns from your moves, adapting its strategy to challenge you in exciting ways. Can you outsmart it?",
+          builtWith: 'Using Nuxt.js & Tailwind CSS for a smooth, responsive experience.',
 
-          how: 'How to play',
-          step1: 'You can start the game by selecting "rock", "scissors" or "paper".',
-          step2: 'Choose continuously until you create a pattern.',
-          step3: 'Examples of patterns:',
-          pattern1: 'Rock, rock, rock, rock, etc.',
-          pattern2: 'Rock, scissors, rock, scissors, etc.',
-          pattern3: 'Rock, scissors, paper, rock, scissors, paper, etc.',
-          pattern4: 'Paper, paper, paper, paper, etc.',
-          step4: 'See that you will lose.',
+          how: 'How to Play',
+          step1: '1. Start by choosing Rock ✊, Paper ✋, or Scissors ✌️.',
+          step2: '2. Keep playing and see if you can spot patterns in the AI\'s choices.',
+          step3: '3. Try different strategies! Here are some ideas:',
+          pattern1: '• Go for the same choice multiple times',
+          pattern2: '• Alternate between two choices',
+          pattern3: '• Use a three-move sequence',
+          pattern4: '• Mix it up randomly',
+          step4: '4. Watch how the AI adapts to your style. Can you stay one step ahead?',
+          challenge: 'Think you can beat our AI? Give it a try and have fun!',
         },
         zh: {
           welcome: '欢迎',
@@ -121,20 +104,22 @@ export default {
           reset: '重置',
           gameCount: '游戏次数',
   
-          what: '这是什么？',
-          thisIs: '这是一个使用人工智能创建的石头剪刀布游戏。',
-          thisGame: '这个游戏可以读取玩家的模式，以确定"人工智能"将采取的下一步行动以获胜。',
-          builtWith: '使用 Nuxt JS 和 Tailwind CSS 框架构建。',
-  
-          how: '如何玩',
-          step1: '你可以通过选择"石头"、"剪刀"或"布"来开始游戏。',
-          step2: '持续选择直到形成一个模式。',
-          step3: '模式示例：',
-          pattern1: '石头、石头、石头、石头等。',
-          pattern2: '石头、剪刀、石头、剪刀等。',
-          pattern3: '石头、剪刀、布、石头、剪刀、布等。',
-          pattern4: '布、布、布、布等。',
-          step4: '看看你会输。',
+          what: '这是什么游戏？',
+          thisIs: '欢迎来到AI石头剪刀布 - 经典游戏的创新版本！',
+          thisGame: "我们的智能AI会从你的动作中学习，调整策略来挑战你。你能胜过它吗？",
+          builtWith: '使用Nuxt.js和Tailwind CSS精心打造，带来流畅响应的体验。',
+
+          how: '如何游戏',
+          step1: '1. 选择石头✊、布✋或剪刀✌️开始游戏。',
+          step2: '2. 持续游戏，看看你能否发现AI选择的模式。',
+          step3: '3. 尝试不同的策略！以下是一些想法：',
+          pattern1: '• 连续使用相同的选择',
+          pattern2: '• 在两个选择之间交替',
+          pattern3: '• 使用三步序列',
+          pattern4: '• 随机混合选择',
+          step4: '4. 观察AI如何适应你的风格。你能保持领先吗？',
+          
+          challenge: '觉得能打败我们的AI吗？来试试看，祝你玩得开心！',
         }
       }
     }

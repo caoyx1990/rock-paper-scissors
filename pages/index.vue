@@ -192,7 +192,7 @@ export default {
       ],
       script: [
         { src: '//unpkg.com/brain.js' },
-        { hid: 'jsonld', type: 'application/ld+json', json: this.structuredData }
+        { hid: 'jsonld', type: 'application/ld+json', json: this.structuredData },
         { 
           src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7341901814327769',
           async: true,

@@ -48,7 +48,7 @@ export default {
         en: {
           welcome: 'Welcome',
           title: 'Rock Paper Scissors',
-          subtitle: 'With Artificial Intellegence',
+          subtitle: 'With AI that can\'t be beaten',
           metaDescription: "Play Rock Paper Scissors against an AI that learns from your moves. Test your strategy against machine learning!",
           metaKeywords: "rock paper scissors, rock paper scissors game, rock paper scissors with AI, strategy game",
 
@@ -82,6 +82,8 @@ export default {
           pattern4: 'Mix it up randomly',
           step4: 'Watch how the AI adapts to your style. Can you stay one step ahead?',
           challenge: 'Think you can beat our AI? Give it a try and have fun!',
+          shareScore: "Share Score",
+          shareText: "I just played Rock Paper Scissors with AI! My score: {scoreHuman}, AI score: {scoreAI}, after {gameCount} games. Can you beat the AI?"
         },
         zh: {
           welcome: '欢迎',
@@ -120,6 +122,8 @@ export default {
           step4: '观察AI如何适应你的风格。你能保持领先吗？',
           
           challenge: '觉得能打败我们的AI吗？来试试看，祝你玩得开心！',
+          shareScore: "分享得分",
+          shareText: "我刚刚和AI玩了石头剪刀布！我的得分：{scoreHuman}，AI得分：{scoreAI}，共进行了{gameCount}局。你能打败AI吗？"
         }
       }
     }

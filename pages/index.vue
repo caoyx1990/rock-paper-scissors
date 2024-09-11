@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl mx-auto lg:flex lg:justify-evenly lg:items-start">
     <div class="flex flex-col items-center justify-center text-center lg:mt-10">
-      <div class="flex justify-end w-full p-4">
+      <!-- <div class="flex justify-end w-full p-4">
         <nuxt-link
           class="inline-flex items-center px-4 py-2 text-white duration-500 bg-indigo-500 rounded-md hover:bg-indigo-600"
           v-if="$i18n.locale !== 'en'"
@@ -22,11 +22,11 @@
           </span>
           <span class="ml-2">English</span>
         </nuxt-link>
-
+        
         <nuxt-link
           class="inline-flex items-center px-4 py-2 text-white duration-500 bg-indigo-500 rounded-md hover:bg-indigo-600"
-          v-if="$i18n.locale !== 'id'"
-          :to="switchLocalePath('id')"
+          v-if="$i18n.locale !== 'zh'"
+          :to="switchLocalePath('zh')"
         >
           <span>
             <svg
@@ -41,9 +41,9 @@
               ></path>
             </svg>
           </span>
-          <span class="ml-2">Indonesian</span>
+          <span class="ml-2">中文</span>
         </nuxt-link>
-      </div>
+      </div> -->
       <div class="p-4">
         <h1 class="text-3xl font-bold text-indigo-500">{{ $t('title') }}</h1>
         <h2 class="text-base text-indigo-500">{{ $t('subtitle') }}</h2>
@@ -80,21 +80,24 @@
           <div class="flex flex-row items-center justify-center">
             <button
               @click="humanInput(1)"
-              class="px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600"
+              class="w-32 h-20 px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
             >
-              {{ $t('rock') }}
+              <span class="text-2xl">✊</span>
+              <span class="mt-1">{{ $t('rock') }}</span>
             </button>
             <button
               @click="humanInput(2)"
-              class="px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600"
+              class="w-32 h-20 px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
             >
-              {{ $t('paper') }}
+            <span class="text-2xl">✋</span>
+              <span class="mt-1">{{ $t('paper') }}</span>
             </button>
             <button
               @click="humanInput(3)"
-              class="px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600"
+              class="w-32 h-20 px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
             >
-              {{ $t('scissors') }}
+            <span class="text-2xl">✌️</span>
+              <span class="mt-1">{{ $t('scissors') }}</span>
             </button>
           </div>
           <div>
@@ -102,11 +105,13 @@
               @click="resetScore"
               class="px-4 py-2 m-2 text-indigo-500 border rounded"
             >
-              {{ $t('reset') }}
+            {{ $t('reset') }}
             </button>
           </div>
           <div class="mt-8">
-            <p>{{ $t('gameCount') }}: {{ gameCount }}</p>
+            <p class="text-lg font-semibold text-indigo-600 bg-indigo-100 rounded-full px-4 py-2 inline-block shadow-md">
+              <span class="mr-2">🎮</span>{{ $t('gameCount') }}: <span class="text-xl font-bold">{{ gameCount }}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -152,33 +157,24 @@
           </ol>
         </div>
       </div>
-
-      <div class="p-4 mt-4 prose lg:prose-xl">
-        <h2>
-          {{ $t('source') }}
-        </h2>
-        <div>
-          <p>
-            {{ $t('brainjs') }}:
-            <a href="https://github.com/BrainJS/brain.js">Brain JS</a>
-          </p>
-          <p>
-            {{ $t('github') }}:
-            <a href="https://github.com/arifikhsan/batu-gunting-kertas-nuxt"
-              >Github</a
-            >
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  head: {
-    title: 'Rock Paper Scissors with AI',
-    script: [{ src: '//unpkg.com/brain.js' }]
+  head() {
+    return {
+      title: this.$t('title'),
+      meta: [
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'keywords', name: 'keywords', content: this.$t('metaKeywords') }
+      ],
+      script: [
+        { src: '//unpkg.com/brain.js' },
+        { hid: 'jsonld', type: 'application/ld+json', json: this.structuredData }
+      ]
+    }
   },
   data() {
     return {
@@ -267,6 +263,33 @@ export default {
 
         default:
           return ''
+      }
+    },
+    structuredData() {
+      return {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": this.$t('title'),
+        "description": this.$t('metaDescription'),
+        "numberOfPlayers": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 1
+        },
+        "gameItem": [
+          {
+            "@type": "Thing",
+            "name": this.$t('rock')
+          },
+          {
+            "@type": "Thing",
+            "name": this.$t('paper')
+          },
+          {
+            "@type": "Thing",
+            "name": this.$t('scissors')
+          }
+        ]
       }
     }
   }

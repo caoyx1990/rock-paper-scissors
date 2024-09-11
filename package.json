@@ -1,8 +1,8 @@
 {
-  "name": "batu-gunting-kertas-nuxt",
+  "name": "rock-paper-scissors",
   "version": "1.0.0",
-  "description": "Permainan Batu Gunting Kertas menggunakan kecerdasan buatan dengan memprediksi nomor yang akan muncul berdasarkan pola.",
-  "author": "Arif Ikhsanudin",
+  "description": "rock, paper, scissors game with artificial intelligence.",
+  "author": "Chris Cao",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -11,7 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^5.10.0",
+    "@tailwindcss/typography": "^0.5.10",
     "nuxt": "^2.17.2",
     "nuxt-i18n": "^6.28.1",
     "nuxt-webfontloader": "^1.1.0"

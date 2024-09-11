@@ -14,7 +14,7 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/rock-paper-scissors.png' }]
   },
   /*
    ** Customize the progress-bar color
@@ -56,7 +56,7 @@ export default {
     port: 8000,
   },
   i18n: {
-    locales: ['en', 'id'],
+    locales: ['en', 'zh'],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -65,6 +65,8 @@ export default {
           welcome: 'Welcome',
           title: 'Rock Paper Scissors',
           subtitle: 'With Artificial Intellegence',
+          metaDescription: "Play Rock Paper Scissors against an AI that learns from your moves. Test your strategy against machine learning!",
+          metaKeywords: "rock paper scissors, AI game, machine learning game, strategy game",
 
           gameStart: 'Start Game',
           youWin: 'You Win',
@@ -96,50 +98,42 @@ export default {
           pattern3: 'Rock, scissors, paper, rock, scissors, paper, etc.',
           pattern4: 'Paper, paper, paper, paper, etc.',
           step4: 'See that you will lose.',
-
-          source: 'Source code',
-          brainjs: 'Built with library',
-          github: 'Get this code in'
         },
-        id: {
-          welcome: 'Selamat datang',
-          title: 'Batu Gunting Kertas',
-          subtitle: 'Dengan Kecerdasan Buatan',
-
-          gameStart: 'Mulai Permainan',
-          youWin: 'Anda Menang',
-          youLose: 'Anda Kalah',
-          draw: 'Seri',
-
-          score: 'Skor',
-          human: 'Manusia',
-          ai: 'AI',
-          rock: 'Batu',
-          paper: 'Kertas',
-          scissors: 'Gunting',
-          reset: 'Ulangi dari awal',
-          gameCount: 'Game ke',
-
-          what: 'Apa ini?',
-          thisIs:
-            'Ini adalah permainan batu gunting kertas yang dibuat dengan menggunakan kecerdasan buatan.',
-          thisGame:
-            "Game ini dapat membaca pola pemainnya untuk menentukan langkah yang akan diambil oleh AI agar bisa menang.",
-          builtWith: 'Dibuat dengan framework Nuxt JS & Tailwind CSS.',
-
-          how: 'Cara bermain',
-          step1: 'Anda bisa memulai permainan dengan memilih "batu", "gunting" atau "kertas".',
-          step2: 'Pilihlah secara terus menerus sampai membuat pola.',
-          step3: 'Contoh pola:',
-          pattern1: 'Batu, batu, batu, batu, dst.',
-          pattern2: 'Batu, gunting, batu, gunting, dst.',
-          pattern3: 'Batu, gunting, kertas, batu, gunting, kertas, dst.',
-          pattern4: 'Kertas, kertas, kertas, kertas, dst.',
-          step4: 'Lihatlah bahwa Anda akan kalah.',
-
-          source: 'Kode Sumber',
-          brainjs: 'Dibuat dengan library',
-          github: 'Dapatkan kode game ini di'
+        zh: {
+          welcome: '欢迎',
+          title: '石头剪刀布',
+          subtitle: '人工智能版',
+          metaDescription: "与能从你的动作中学习的 AI 玩石头剪刀布。测试你的策略对抗机器学习！",
+          metaKeywords: "石头剪刀布, AI 游戏, 机器学习游戏, 策略游戏",
+  
+          gameStart: '开始游戏',
+          youWin: '你赢了',
+          youLose: '你输了',
+          draw: '平局',
+  
+          score: '得分',
+          human: '人类',
+          ai: '人工智能',
+          rock: '石头',
+          paper: '布',
+          scissors: '剪刀',
+          reset: '重置',
+          gameCount: '游戏次数',
+  
+          what: '这是什么？',
+          thisIs: '这是一个使用人工智能创建的石头剪刀布游戏。',
+          thisGame: '这个游戏可以读取玩家的模式，以确定"人工智能"将采取的下一步行动以获胜。',
+          builtWith: '使用 Nuxt JS 和 Tailwind CSS 框架构建。',
+  
+          how: '如何玩',
+          step1: '你可以通过选择"石头"、"剪刀"或"布"来开始游戏。',
+          step2: '持续选择直到形成一个模式。',
+          step3: '模式示例：',
+          pattern1: '石头、石头、石头、石头等。',
+          pattern2: '石头、剪刀、石头、剪刀等。',
+          pattern3: '石头、剪刀、布、石头、剪刀、布等。',
+          pattern4: '布、布、布、布等。',
+          step4: '看看你会输。',
         }
       }
     }

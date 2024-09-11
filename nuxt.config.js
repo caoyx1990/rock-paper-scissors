@@ -66,7 +66,7 @@ export default {
           title: 'Rock Paper Scissors',
           subtitle: 'With Artificial Intellegence',
           metaDescription: "Play Rock Paper Scissors against an AI that learns from your moves. Test your strategy against machine learning!",
-          metaKeywords: "rock paper scissors, AI game, machine learning game, strategy game",
+          metaKeywords: "rock paper scissors, rock paper scissors game, rock paper scissors with AI, strategy game",
 
           gameStart: 'Start Game',
           youWin: 'You Win',

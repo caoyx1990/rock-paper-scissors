@@ -188,7 +188,8 @@ export default {
         { hid: 'twitter:description', name: 'twitter:description', content: this.$t('metaDescription') }
       ],
       link: [
-        { rel: 'canonical', href: process.env.BASE_URL  || 'https://rockpaperscissors-game.org' }
+        { rel: 'canonical', href: process.env.BASE_URL  || 'https://rockpaperscissors-game.org' },
+        { rel: 'icon', type: 'image/x-icon', href: '/rock-paper-scissors.png' }
       ],
       script: [
         { src: '//unpkg.com/brain.js' },
@@ -197,6 +198,21 @@ export default {
           src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7341901814327769',
           async: true,
           crossorigin: 'anonymous'
+        },
+        {
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-PBGXZ31PKB',
+        async: true
+        },
+        {
+          hid: 'gtag-init',
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PBGXZ31PKB');
+          `,
+          type: 'text/javascript',
+          charset: 'utf-8'
         }
       ]
     }

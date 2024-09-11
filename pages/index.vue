@@ -1,7 +1,7 @@
 <template>
-  <div class="max-w-5xl mx-auto flex-col">
+  <div class="max-w-5xl mx-auto flex-col px-4 sm:px-6 lg:px-8">
     
-    <div class="flex flex-col items-center justify-center text-center lg:mt-10">
+    <div class="flex flex-col items-center justify-center text-center mt-6 lg:mt-10">
       <!-- <div class="flex justify-end w-full p-4">
         <nuxt-link
           class="inline-flex items-center px-4 py-2 text-white duration-500 bg-indigo-500 rounded-md hover:bg-indigo-600"
@@ -46,14 +46,38 @@
         </nuxt-link>
       </div> -->
       <div class="p-4">
-        <h1 class="text-3xl font-bold text-indigo-500">{{ $t('title') }}</h1>
-        <h2 class="text-base text-indigo-500">{{ $t('subtitle') }}</h2>
+        <h1 class="text-2xl sm:text-3xl font-bold text-indigo-500">{{ $t('title') }}</h1>
+        <h2 class="text-sm sm:text-base text-indigo-500">{{ $t('subtitle') }}</h2>
       </div>
       <div class="p-4">
-        <h2 class="text-2xl font-semibold text-indigo-500">
+        <h2 class="text-xl sm:text-2xl font-semibold text-indigo-500">
           {{ $t('score') }}
         </h2>
-        <div class="flex items-center mt-4 items-row justify-evenly">
+        <div class="flex items-center mt-4 justify-center">
+          <div class="w-1/2 border-r border-indigo-500 px-2">
+            <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreHuman }}</p>
+            <p class="mt-2 sm:mt-4 text-base sm:text-lg flex items-center justify-center">
+              <span class="emoji mr-2" aria-hidden="true">🥵</span>
+              <span>{{ $t('human') }}</span>
+            </p>
+            <p class="mt-2 sm:mt-4 flex items-center justify-center">
+              <span class="emoji mr-2" v-html="chosenEmoji(chosenByHuman)"></span>
+              <span class="text-sm sm:text-base">{{ showChosenByHuman }}</span>
+            </p>
+          </div>
+          <div class="w-1/2 px-2">
+            <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreAI }}</p>
+            <p class="mt-2 sm:mt-4 text-base sm:text-lg flex items-center justify-center">
+              <span class="emoji mr-2" aria-hidden="true">🤖</span>
+              <span>{{ $t('ai') }}</span>
+            </p>
+            <p class="mt-2 sm:mt-4 flex items-center justify-center">
+              <span class="emoji mr-2" v-html="chosenEmoji(chosenByAI)"></span>
+              <span class="text-sm sm:text-base">{{ showChosenByAI }}</span>
+            </p>
+          </div>
+        </div>
+        <!-- <div class="flex items-center mt-4 items-row justify-evenly">
           <div class="w-1/2 border-r border-indigo-500">
             <p class="text-3xl text-indigo-500">{{ scoreHuman }}</p>
             <p class="mt-4 text-xl flex items-center justify-center">
@@ -76,7 +100,7 @@
               <span>{{ showChosenByAI }}</span>
             </p>
           </div>
-        </div>
+        </div> -->
         <div class="my-6 text-2xl font-bold">
           <p v-if="this.winner === 'human'" class="text-indigo-500">
             {{ $t('youWin') }}
@@ -90,27 +114,27 @@
           <p v-else class="text-gray-700">{{ $t('gameStart') }}</p>
         </div>
         <div class="mt-4">
-          <div class="flex flex-row items-center justify-center">
+          <div class="flex flex-wrap items-center justify-center">
             <button
               @click="humanInput(1)"
-              class="w-32 h-20 px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
+              class="w-24 sm:w-32 h-16 sm:h-20 px-2 sm:px-4 py-1 sm:py-2 m-1 sm:m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
             >
-              <span class="text-2xl">✊</span>
-              <span class="mt-1">{{ $t('rock') }}</span>
+              <span class="text-xl sm:text-2xl">✊</span>
+              <span class="mt-1 text-sm sm:text-base">{{ $t('rock') }}</span>
             </button>
             <button
               @click="humanInput(2)"
-              class="w-32 h-20 px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
+              class="w-24 sm:w-32 h-16 sm:h-20 px-2 sm:px-4 py-1 sm:py-2 m-1 sm:m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
             >
-            <span class="text-2xl">✋</span>
-              <span class="mt-1">{{ $t('paper') }}</span>
+            <span class="text-xl sm:text-2xl">✋</span>
+              <span class="mt-1 text-sm sm:text-base">{{ $t('paper') }}</span>
             </button>
             <button
               @click="humanInput(3)"
-              class="w-32 h-20 px-4 py-2 m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
+              class="w-24 sm:w-32 h-16 sm:h-20 px-2 sm:px-4 py-1 sm:py-2 m-1 sm:m-2 text-white duration-500 bg-indigo-500 rounded hover:bg-indigo-600 flex flex-col items-center justify-center"
             >
-            <span class="text-2xl">✌️</span>
-              <span class="mt-1">{{ $t('scissors') }}</span>
+            <span class="ttext-xl sm:text-2xl">✌️</span>
+              <span class="mt-1 text-sm sm:text-base">{{ $t('scissors') }}</span>
             </button>
           </div>
           <div>
@@ -146,7 +170,7 @@
         </svg>
       </button>
       <div v-show="showTips" class="bg-indigo-50 p-4 rounded-b-lg">
-        <div class="prose lg:prose-xl">
+        <div class="prose prose-sm sm:prose lg:prose-xl">
           <h2>{{ $t('what') }}</h2>
           <div>
             <p>{{ $t('thisIs') }}</p>
@@ -176,7 +200,7 @@
         </div>
       </div>
     </div>
-    <footer class="mt-auto py-4 text-center text-gray-600 text-sm">
+    <footer class="mt-auto py-4 text-center text-gray-600 text-xs sm:text-sm">
       <p>Copyright © {{ new Date().getFullYear() }} Rock Paper Scissors Game</p>
     </footer>
   </div>
@@ -376,6 +400,12 @@ export default {
 .emoji {
   font-size: 1.5em;
   animation: pulse 2s infinite;
+}
+
+@media (min-width: 640px) {
+  .emoji {
+    font-size: 1.5em;
+  }
 }
 
 @keyframes pulse {

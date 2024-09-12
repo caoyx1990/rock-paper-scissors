@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl mx-auto flex-col px-4 sm:px-6 lg:px-8">
-    <div class="mt-8 flex justify-end">
-      <div class="flex flex-col items-end">
+    <div class="mt-8 flex justify-end" style="float: right;">
+      <div class="flex flex-col items-end absolute">
         <button
           @click="shareScore('twitter')"
           class="p-2 mb-2 text-blue-400 hover:text-blue-500 transition duration-300 rounded-full hover:bg-blue-100"
@@ -155,13 +155,13 @@
             <span class="ttext-xl sm:text-2xl">✌️</span>
               <span class="mt-1 text-sm sm:text-base">{{ $t('scissors') }}</span>
             </button>
-            <button
+            <!-- <button
               @click="randomInput"
               class="w-24 sm:w-32 h-16 sm:h-20 px-2 sm:px-4 py-1 sm:py-2 m-1 sm:m-2 text-white duration-500 bg-yellow-500 rounded hover:bg-yellow-600 flex flex-col items-center justify-center"
             >
               <span class="text-xl sm:text-2xl">🎲</span>
               <span class="mt-1 text-sm sm:text-base">{{ $t('random') }}</span>
-            </button>
+            </button> -->
           </div>
           <div>
             <button

@@ -67,7 +67,7 @@
         </nuxt-link>
       </div> -->
       <div class="p-4">
-        <h1 class="text-2xl sm:text-3xl font-bold text-indigo-500">{{ $t('title') }}</h1>
+        <h1 title="Rock Paper Scissors Game" class="text-2xl sm:text-3xl font-bold text-indigo-500">{{ $t('title') }}</h1>
         <h2 class="text-sm sm:text-base text-indigo-500">{{ $t('subtitle') }}</h2>
       </div>
       <div class="p-4">
@@ -228,14 +228,14 @@ export default {
     return {
       title: this.$t('title'),
       meta: [
-      { hid: 'description', name: 'description', content: this.$t('metaDescription') },
+        { hid: 'description', name: 'description', content: this.$t('metaDescription') },
         { hid: 'keywords', name: 'keywords', content: this.$t('metaKeywords') },
-        { hid: 'og:title', property: 'og:title', content: this.$t('title') },
+        { hid: 'og:title', property: 'og:title', content: this.$t('metaTitle') },
         { hid: 'og:description', property: 'og:description', content: this.$t('metaDescription') },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: process.env.BASE_URL },
         { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-        { hid: 'twitter:title', name: 'twitter:title', content: this.$t('title') },
+        { hid: 'twitter:title', name: 'twitter:title', content: this.$t('metaTitle') },
         { hid: 'twitter:description', name: 'twitter:description', content: this.$t('metaDescription') }
       ],
       link: [

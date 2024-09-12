@@ -48,9 +48,10 @@ export default {
         en: {
           welcome: 'Welcome',
           title: 'Rock Paper Scissors',
-          subtitle: 'With AI that can\'t be beaten',
+          subtitle: 'Play rock-paper-scissors with AI',
+          metaTitle: 'Rock Paper Scissors Game',
           metaDescription: "Play Rock Paper Scissors against an AI that learns from your moves. Test your strategy against machine learning!",
-          metaKeywords: "rock paper scissors, rock paper scissors game, rock paper scissors with AI, strategy game",
+          metaKeywords: "rock paper scissors, rock paper scissors game, rock paper scissors ai,rock paper scissors with AI, rock paper scissors AI game, rock paper scissors game with AI",
 
           gameStart: 'Start Game',
           youWin: 'You Win',

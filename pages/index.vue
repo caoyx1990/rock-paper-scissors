@@ -1,6 +1,27 @@
 <template>
   <div class="max-w-5xl mx-auto flex-col px-4 sm:px-6 lg:px-8">
-    
+    <div class="mt-8 flex justify-end">
+      <div class="flex flex-col items-end">
+        <button
+          @click="shareScore('twitter')"
+          class="p-2 mb-2 text-blue-400 hover:text-blue-500 transition duration-300 rounded-full hover:bg-blue-100"
+          :title="$t('shareScoreTwitter')"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+        </button>
+        <button
+          @click="shareScore('reddit')"
+          class="p-2 text-orange-500 hover:text-orange-600 transition duration-300 rounded-full hover:bg-orange-100"
+          :title="$t('shareScoreReddit')"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
     <div class="flex flex-col items-center justify-center text-center mt-6 lg:mt-10">
       <!-- <div class="flex justify-end w-full p-4">
         <nuxt-link
@@ -55,7 +76,10 @@
         </h2>
         <div class="flex items-center mt-4 justify-center">
           <div class="w-1/2 border-r border-indigo-500 px-2">
-            <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreHuman }}</p>
+            <p class="text-lg font-semibold text-green-600 bg-green-100 rounded-full px-4 py-2 inline-block shadow-md">
+              <span class="text-xl font-bold">{{ scoreHuman }}</span>
+            </p>
+            <!-- <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreHuman }}</p> -->
             <p class="mt-2 sm:mt-4 text-base sm:text-lg flex items-center justify-center">
               <span class="emoji mr-2" aria-hidden="true">🥵</span>
               <span>{{ $t('human') }}</span>
@@ -65,7 +89,7 @@
               <span class="text-sm sm:text-base">{{ showChosenByHuman }}</span>
             </p>
           </div>
-          <div class="w-1/2 px-2">
+          <!-- <div class="w-1/2 px-2">
             <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreAI }}</p>
             <p class="mt-2 sm:mt-4 text-base sm:text-lg flex items-center justify-center">
               <span class="emoji mr-2" aria-hidden="true">🤖</span>
@@ -75,32 +99,27 @@
               <span class="emoji mr-2" v-html="chosenEmoji(chosenByAI)"></span>
               <span class="text-sm sm:text-base">{{ showChosenByAI }}</span>
             </p>
-          </div>
-        </div>
-        <!-- <div class="flex items-center mt-4 items-row justify-evenly">
-          <div class="w-1/2 border-r border-indigo-500">
-            <p class="text-3xl text-indigo-500">{{ scoreHuman }}</p>
-            <p class="mt-4 text-xl flex items-center justify-center">
-              <span class="emoji mr-2" aria-hidden="true">🥵</span>
-              <span>{{ $t('human') }}</span>
+          </div> -->
+          <div class="w-1/2 px-2 relative">
+            <p class="text-lg font-semibold text-red-600 bg-red-100 rounded-full px-4 py-2 inline-block shadow-md">
+              <span class="text-xl font-bold">{{ scoreAI }}</span>
             </p>
-            <p class="mt-4 flex items-center justify-center">
-              <span class="emoji mr-2" v-html="chosenEmoji(chosenByHuman)"></span>
-              <span>{{ showChosenByHuman }}</span>
-            </p>
-          </div>
-          <div class="w-1/2">
-            <p class="text-3xl text-indigo-500">{{ scoreAI }}</p>
-            <p class="mt-4 text-xl flex items-center justify-center">
+            <!-- <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreAI }}</p> -->
+            <p class="mt-2 sm:mt-4 text-base sm:text-lg flex items-center justify-center">
               <span class="emoji mr-2" aria-hidden="true">🤖</span>
               <span>{{ $t('ai') }}</span>
             </p>
-            <p class="mt-4 flex items-center justify-center">
+            <p class="mt-2 sm:mt-4 flex items-center justify-center">
               <span class="emoji mr-2" v-html="chosenEmoji(chosenByAI)"></span>
-              <span>{{ showChosenByAI }}</span>
+              <span class="text-sm sm:text-base">{{ showChosenByAI }}</span>
             </p>
+            <div v-if="aiDominance" class="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">
+              <div class="bg-indigo-500 text-white p-2 rounded-lg shadow-lg relative">
+                <p class="text-sm">{{ $t('aiTaunt') }}</p>
+              </div>
+            </div>
           </div>
-        </div> -->
+        </div>
         <div class="my-6 text-2xl font-bold">
           <p v-if="this.winner === 'human'" class="text-indigo-500">
             {{ $t('youWin') }}
@@ -136,6 +155,13 @@
             <span class="ttext-xl sm:text-2xl">✌️</span>
               <span class="mt-1 text-sm sm:text-base">{{ $t('scissors') }}</span>
             </button>
+            <button
+              @click="randomInput"
+              class="w-24 sm:w-32 h-16 sm:h-20 px-2 sm:px-4 py-1 sm:py-2 m-1 sm:m-2 text-white duration-500 bg-yellow-500 rounded hover:bg-yellow-600 flex flex-col items-center justify-center"
+            >
+              <span class="text-xl sm:text-2xl">🎲</span>
+              <span class="mt-1 text-sm sm:text-base">{{ $t('random') }}</span>
+            </button>
           </div>
           <div>
             <button
@@ -149,15 +175,6 @@
             <p class="text-lg font-semibold text-indigo-600 bg-indigo-100 rounded-full px-4 py-2 inline-block shadow-md">
               <span class="mr-2">🎮</span>{{ $t('gameCount') }}: <span class="text-xl font-bold">{{ gameCount }}</span>
             </p>
-            <button
-              @click="shareScore"
-              class="ml-4 p-2 text-blue-400 hover:text-blue-500 transition duration-300 rounded-full hover:bg-blue-100"
-              :title="$t('shareScore')"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-              </svg>
-            </button>
           </div>
         </div>
       </div>
@@ -261,10 +278,13 @@ export default {
       chosenByAI: 0,
       winner: '', // human or AI or draw
       gameCount: 0,
-      patternLength: 10
+      patternLength: 10,
     }
   },
   computed: {
+    aiDominance() {
+      return this.scoreAI - this.scoreHuman >= 10;
+    },
     showChosenByHuman() {
       return this.stringOf(this.chosenByHuman)
     },
@@ -273,6 +293,10 @@ export default {
     }
   },
   methods: {
+    randomInput() {
+      const randomChoice = Math.floor(Math.random() * 3) + 1;
+      this.humanInput(randomChoice);
+    },
     toggleRules() {
       this.showTips = !this.showTips;
     },
@@ -363,8 +387,15 @@ export default {
         gameCount: this.gameCount
       });
       const url = 'https://rockpaperscissors-game.org'; // Replace with your actual URL
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-      window.open(twitterUrl, '_blank');
+      if (platform === 'twitter') {
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+      } else if (platform === 'reddit') {
+        shareUrl = `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+      }
+
+      if (shareUrl) {
+        window.open(shareUrl, '_blank');
+      }
     },
     structuredData() {
       return {

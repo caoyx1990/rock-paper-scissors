@@ -64,7 +64,10 @@ export default {
           paper: 'Paper',
           scissors: 'Scissors',
           reset: 'Reset',
-          gameCount: 'Game count',
+          gameCount: 'Total Games',
+          draws: "Draws",
+          aiTaunt: "Oh, so weak!",
+          random: "Random",
 
           tips: 'Tips',
           what: 'What\'s This Game?',
@@ -83,6 +86,8 @@ export default {
           step4: 'Watch how the AI adapts to your style. Can you stay one step ahead?',
           challenge: 'Think you can beat our AI? Give it a try and have fun!',
           shareScore: "Share Score",
+          shareScoreTwitter: "Share on Twitter",
+          shareScoreReddit: "Share on Reddit",
           shareText: "I just played Rock Paper Scissors with AI! My score: {scoreHuman}, AI score: {scoreAI}, after {gameCount} games. Can you beat the AI?"
         },
         zh: {
@@ -105,6 +110,9 @@ export default {
           scissors: '剪刀',
           reset: '重置',
           gameCount: '游戏次数',
+          draws: "平局",
+          aiTaunt: "哦，太弱了！",
+          random: "随机",
   
           what: '这是什么游戏？',
           thisIs: '欢迎来到AI石头剪刀布 - 经典游戏的创新版本！',
@@ -120,7 +128,8 @@ export default {
           pattern3: '使用三步序列',
           pattern4: '随机混合选择',
           step4: '观察AI如何适应你的风格。你能保持领先吗？',
-          
+          shareScoreTwitter: "在Twitter上分享",
+          shareScoreReddit: "在Reddit上分享",
           challenge: '觉得能打败我们的AI吗？来试试看，祝你玩得开心！',
           shareScore: "分享得分",
           shareText: "我刚刚和AI玩了石头剪刀布！我的得分：{scoreHuman}，AI得分：{scoreAI}，共进行了{gameCount}局。你能打败AI吗？"

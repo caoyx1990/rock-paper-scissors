@@ -380,7 +380,7 @@ export default {
           return ''
       }
     },
-    shareScore() {
+    shareScore(platform) {
       const text = this.$t('shareText', {
         scoreHuman: this.scoreHuman,
         scoreAI: this.scoreAI,
@@ -388,14 +388,13 @@ export default {
       });
       const url = 'https://rockpaperscissors-game.org'; // Replace with your actual URL
       if (platform === 'twitter') {
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+        const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+        window.open(shareUrl, '_blank');
       } else if (platform === 'reddit') {
-        shareUrl = `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-      }
-
-      if (shareUrl) {
+        const shareUrl = `https://reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
         window.open(shareUrl, '_blank');
       }
+
     },
     structuredData() {
       return {

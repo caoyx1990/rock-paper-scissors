@@ -1,5 +1,29 @@
 <template>
   <div class="max-w-5xl mx-auto flex-col px-4 sm:px-6 lg:px-8">
+    <div class="fixed left-4 top-4 z-50">
+      <div class="relative inline-block text-left">
+        <div>
+          <button @click="toggleLanguageMenu" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="language-menu" aria-haspopup="true" aria-expanded="true">
+            {{ getCurrentLanguageName() }}
+            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+
+        <div v-if="showLanguageMenu" class="origin-top-left absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="language-menu">
+            <a v-for="locale in $i18n.locales" :key="locale.code" 
+               :href="switchLocalePath(locale.code)"
+               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" 
+               role="menuitem"
+               @click="selectLanguage(locale.code)">
+              {{ locale.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="mt-8 flex justify-end" style="float: right;">
       <div class="flex flex-col items-end absolute">
         <button
@@ -81,25 +105,21 @@
             </p>
             <!-- <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreHuman }}</p> -->
             <p class="mt-2 sm:mt-4 text-base sm:text-lg flex items-center justify-center">
-              <span class="emoji mr-2" aria-hidden="true">🥵</span>
+              <span class="emoji mr-2" aria-hidden="true">👨</span>
               <span>{{ $t('human') }}</span>
             </p>
-            <p class="mt-2 sm:mt-4 flex items-center justify-center">
+            <!-- <p class="mt-2 sm:mt-4 flex items-center justify-center">
+              <span class="emoji mr-2" v-html="chosenEmoji(chosenByHuman)"></span>
+              <span class="text-sm sm:text-base">{{ showChosenByHuman }}</span>
+            </p> -->
+            <div v-if="chosenByHuman === 0" class="mt-2 sm:mt-4 flex items-center justify-center space-x-2">
+              <span class="emoji" v-html="chosenEmoji(cyclingHumanOption)"></span>
+            </div>
+            <p v-else class="mt-2 sm:mt-4 flex items-center justify-center">
               <span class="emoji mr-2" v-html="chosenEmoji(chosenByHuman)"></span>
               <span class="text-sm sm:text-base">{{ showChosenByHuman }}</span>
             </p>
           </div>
-          <!-- <div class="w-1/2 px-2">
-            <p class="text-2xl sm:text-3xl text-indigo-500">{{ scoreAI }}</p>
-            <p class="mt-2 sm:mt-4 text-base sm:text-lg flex items-center justify-center">
-              <span class="emoji mr-2" aria-hidden="true">🤖</span>
-              <span>{{ $t('ai') }}</span>
-            </p>
-            <p class="mt-2 sm:mt-4 flex items-center justify-center">
-              <span class="emoji mr-2" v-html="chosenEmoji(chosenByAI)"></span>
-              <span class="text-sm sm:text-base">{{ showChosenByAI }}</span>
-            </p>
-          </div> -->
           <div class="w-1/2 px-2 relative">
             <p class="text-lg font-semibold text-red-600 bg-red-100 rounded-full px-4 py-2 inline-block shadow-md">
               <span class="text-xl font-bold">{{ scoreAI }}</span>
@@ -109,7 +129,14 @@
               <span class="emoji mr-2" aria-hidden="true">🤖</span>
               <span>{{ $t('ai') }}</span>
             </p>
-            <p class="mt-2 sm:mt-4 flex items-center justify-center">
+            <!-- <p class="mt-2 sm:mt-4 flex items-center justify-center">
+              <span class="emoji mr-2" v-html="chosenEmoji(chosenByAI)"></span>
+              <span class="text-sm sm:text-base">{{ showChosenByAI }}</span>
+            </p> -->
+            <div v-if="chosenByAI === 0" class="mt-2 sm:mt-4 flex items-center justify-center space-x-2">
+              <span class="emoji" v-html="chosenEmoji(cyclingAIOption)"></span>
+            </div>
+            <p v-else class="mt-2 sm:mt-4 flex items-center justify-center">
               <span class="emoji mr-2" v-html="chosenEmoji(chosenByAI)"></span>
               <span class="text-sm sm:text-base">{{ showChosenByAI }}</span>
             </p>
@@ -279,6 +306,10 @@ export default {
       winner: '', // human or AI or draw
       gameCount: 0,
       patternLength: 10,
+      showLanguageMenu: false,
+      cyclingHumanOption: 1,
+      cyclingAIOption: 1,
+      cyclingInterval: null,
     }
   },
   computed: {
@@ -292,7 +323,39 @@ export default {
       return this.stringOf(this.chosenByAI)
     }
   },
+  mounted() {
+    this.startCycling();
+  },
+
+  beforeDestroy() {
+    this.stopCycling();
+  },
   methods: {
+    startCycling() {
+      this.cyclingInterval = setInterval(() => {
+        this.cyclingHumanOption = (this.cyclingHumanOption % 3) + 1;
+        this.cyclingAIOption = (this.cyclingAIOption % 3) + 1;
+      }, 1000);
+    },
+
+    stopCycling() {
+      if (this.cyclingInterval) {
+        clearInterval(this.cyclingInterval);
+      }
+    },
+    toggleLanguageMenu() {
+      this.showLanguageMenu = !this.showLanguageMenu;
+    },
+
+    selectLanguage(code) {
+      this.$i18n.setLocale(code);
+      this.showLanguageMenu = false;
+    },
+
+    getCurrentLanguageName() {
+      const currentLocale = this.$i18n.locales.find(locale => locale.code === this.$i18n.locale);
+      return currentLocale ? currentLocale.name : 'Language';
+    },
     randomInput() {
       const randomChoice = Math.floor(Math.random() * 3) + 1;
       this.humanInput(randomChoice);
@@ -366,6 +429,8 @@ export default {
       this.chosenByAI = 0
       this.winner = ''
       this.gameCount = 0
+      this.stopCycling();
+      this.startCycling();
     },
     stringOf(integer) {
       switch (integer) {
